@@ -66,11 +66,11 @@ public class PlayerUIManager : MonoBehaviour
         if (staminaBarGroup != null)
             staminaBarGroup.alpha = Mathf.MoveTowards(staminaBarGroup.alpha, target, staminaBarFadeSpeed * Time.deltaTime);
 
-        float clampValue = Mathf.InverseLerp(staminaBarSlider.minValue, staminaBarSlider.maxValue, value); // 0~1로 정규화
+        var clampValue = Mathf.InverseLerp(staminaBarSlider.minValue, staminaBarSlider.maxValue, value); // 0~1로 정규화
 
         // 양쪽에서 중앙으로 잘려 들어가도록 마스크의 좌우 padding 조절
-        float width = staminaMask.rectTransform.rect.width;
-        float pad = (1f - clampValue) * width * 0.5f;
+        var width = staminaMask.rectTransform.rect.width;
+        var pad = (1f - clampValue) * width * 0.5f;
         staminaMask.padding = new Vector4(pad, 0f, pad, 0f);
     }
     #endregion
