@@ -101,8 +101,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Movement();
-        LookAt();
+        HandleMovement();
+        HandleLookAt();
+        HandleInteraction();
     }
     #endregion
 
@@ -124,10 +125,15 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+    public void ChargeStamina() // 스태미너 충전
+    {
+        
+    }
     #endregion
 
     #region Control Functions
-    private void Movement() // 플레이어 이동
+    private void HandleMovement() // 플레이어 이동
     {
         // 이동 키 입력 받아오기
         var horizontal = Input.GetAxisRaw("Horizontal");
@@ -147,7 +153,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = moveDir * speed;
     }
 
-    private void LookAt() // 플레이어 시점 회전
+    private void HandleLookAt() // 플레이어 시점 회전
     {
         // 마우스 입력 받아오기
         var mouseX = Input.GetAxis("Mouse X") * Control.mouseSensitivity;
@@ -160,6 +166,10 @@ public class PlayerController : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f); // 카메라 x축 회전
         transform.Rotate(Vector3.up * mouseX); // 플레이어 회전
+    }
+
+    private void HandleInteraction()
+    {
     }
     #endregion
 }
